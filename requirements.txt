@@ -1,0 +1,4 @@
+pymssql
+pytest
+pytest pytest-html
+python-dotenv
