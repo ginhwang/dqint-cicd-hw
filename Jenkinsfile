@@ -8,19 +8,25 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh '''
-                python3 -m venv .venv
-                . .venv/bin/activate
-                python3 -m pip install -r requirements.txt
-                '''
+                withCredentials([file(credentialsId: 'my-env-file', variable: 'ENV_FILE')]) {
+                    sh '''
+                    python3 -m venv .venv
+                    . .venv/bin/activate
+                    export $(cat $ENV_FILE | xargs)
+                    python3 -m pip install -r requirements.txt
+                    '''
+                }
             }
         }
         stage ('Test'){
             steps {
-                sh '''
-                . .venv/bin/activate
-                pytest tests.py --html=report.html --capture sys -rP
-                '''
+                withCredentials([file(credentialsId: 'my-env-file', variable: 'ENV_FILE')]) {
+                    sh '''
+                    . .venv/bin/activate
+                    export $(cat $ENV_FILE | xargs)
+                    pytest tests.py --html=report.html --capture=sys -rP
+                    '''
+                }
             }
         }
     }
