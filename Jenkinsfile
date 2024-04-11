@@ -1,10 +1,16 @@
 pipeline {
     agent any
     environment {
-        DB_SERVER = EPKZALMW004A
-        DB_PORT=1433
-        DB_NAME=AdventureWorks2012
+        DB_SERVER = 'myserver'
+        DB_PORT = 'myport'
+        DB_NAME = 'mydbname'
     }
+    stages {
+        stage ('GIT Checkout'){
+            steps {
+                git branch: 'main', url: 'https://github.com/ginhwang/dqint-cicd-hw.git'
+            }
+        }
         stage('build') {
             steps {
                 sh '''
