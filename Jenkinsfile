@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        DB_SERVER = 'myserver'
-        DB_PORT = 'myport'
-        DB_NAME = 'mydbname'
+        DB_SERVER = EPKZALMW004A
+        DB_PORT=1433
+        DB_NAME=AdventureWorks2012
     }
     stages {
         stage ('GIT Checkout'){
