@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh '''
                 python3 -m venv .venv
-                source .venv/bin/activate
+                . .venv/bin/activate
                 python3 -m pip install -r requirements.txt
                 '''
             }
@@ -18,7 +18,7 @@ pipeline {
         stage ('Test'){
             steps {
                 sh '''
-                source .venv/bin/activate
+                . .venv/bin/activate
                 pytest tests.py --html=report.html --capture sys -rP
                 '''
             }
