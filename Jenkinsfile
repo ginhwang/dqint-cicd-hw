@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('GIT Checkout'){
             steps {
-                git branch: 'main', url: 'https://github.com/abcdefg/dqint-cicd-hw.git'
+                git branch: 'main', url: 'https://github.com/ginhwang/dqint-cicd-hw.git'
             }
         }
         stage('build') {
