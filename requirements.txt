@@ -1,4 +1,4 @@
 pymssql
 pytest
-pytest pytest-html
+pytest-html
 python-dotenv
