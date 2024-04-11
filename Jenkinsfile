@@ -5,6 +5,12 @@ pipeline {
         DB_PORT=1433
         DB_NAME=AdventureWorks2012
     }
+    stages {
+        stage ('GIT Checkout'){
+            steps {
+                git branch: 'main', url: 'https://github.com/ginhwang/dqint-cicd-hw.git'
+            }
+        }
         stage('build') {
             steps {
                 sh '''
