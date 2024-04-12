@@ -4,8 +4,6 @@ pipeline {
         DB_SERVER = 'EPKZALMW004A'
         DB_PORT='1433'
         DB_NAME='AdventureWorks2012'
-        DB_USER = 'test_user'
-        DB_PASSWORD = 'Abc123Xyz'
     }
     stages {
         stage ('GIT Checkout'){
@@ -24,10 +22,14 @@ pipeline {
         }
         stage ('Test'){
             steps {
+                withCredentials([usernamePassword(credentialsId: 'mssql_creds', usernameVariable: 'DB_USER', passwordVariable: 'DB_PASSWORD')]) {
                 sh '''
                 . .venv/bin/activate
+                export DB_USER=$DB_USER
+                export DB_PASSWORD=$DB_PASSWORD
                 pytest tests.py --html=report.html --capture=sys -rP
                 '''
+                }
             }
         }
     }
