@@ -4,6 +4,8 @@ pipeline {
         DB_SERVER = 'EPKZALMW004A'
         DB_PORT='1433'
         DB_NAME='AdventureWorks2012'
+        DB_USER = credentials('mssql_creds').username
+        DB_PASSWORD = credentials('mssql_creds').password
     }
     stages {
         stage ('GIT Checkout'){
