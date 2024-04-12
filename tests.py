@@ -1,7 +1,7 @@
 """
 Connects to a SQL database using pyodbc
 """
-# import os
+import os
 # from dotenv import load_dotenv
 import pymssql
 import pytest
@@ -15,13 +15,13 @@ def db_conn_curs():
     #Connect to MS SQL
     try:
         conn = pymssql.connect(
-            server=$DB_SERVER,
-            port=$DB_PORT,
-            user=$DB_USER,
-            password=$DB_PASSWORD,
-            database=$DB_NAME
+            server=os.getenv('DB_SERVER'),
+            port=os.getenv('DB_PORT'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
         )  
-
+        
         #Establish a cursor
         cursor = conn.cursor()
     except Exception as e:
