@@ -16,6 +16,7 @@ pipeline {
                 sh '''
                 python3 -m venv .venv
                 . .venv/bin/activate
+                sudo dnf install unixODBC
                 python3 -m pip install pyodbc
                 python3 -m pip install -r requirements.txt
                 '''
