@@ -27,8 +27,6 @@ pipeline {
                 . .venv/bin/activate
                 export DB_USER=$DB_USER
                 export DB_PASSWORD=$DB_PASSWORD
-                if [ -z "$DB_USER" ]; then echo "DB_USER is not set"; fi
-                if [ -z "$DB_PASSWORD" ]; then echo "DB_PASSWORD is not set"; fi
                 pytest tests.py --html=report.html --capture=sys -rP
                 '''
                 }

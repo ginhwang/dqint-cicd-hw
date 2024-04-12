@@ -2,12 +2,12 @@
 Connects to a SQL database using pyodbc
 """
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import pymssql
 import pytest
 
-# Load environment variables
-load_dotenv()
+# # Load environment variables
+# load_dotenv()
 
 # Use fixture to set up the connection and cursor for the extent of the module
 @pytest.fixture(scope='session')
