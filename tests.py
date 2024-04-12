@@ -1,23 +1,27 @@
 """
 Connects to a SQL database using pyodbc
 """
-import os
-import pyodbc
+# import os
+# from dotenv import load_dotenv
+import pymssql
 import pytest
+
+# # Load environment variables
+# load_dotenv()
 
 # Use fixture to set up the connection and cursor for the extent of the module
 @pytest.fixture(scope='session')
 def db_conn_curs():
     #Connect to MS SQL
     try:
-        conn = pyodbc.connect(
-            'DRIVER={ODBC Driver 17 for SQL Server};'
-            'SERVER=' + os.getenv('DB_SERVER') + ';'
-            'PORT=' + os.getenv('DB_PORT') + ';'
-            'DATABASE=' + os.getenv('DB_NAME') + ';'
-            'UID=' + os.getenv('DB_USER') + ';'
-            'PWD=' + os.getenv('DB_PASSWORD') + ';'
-        )   
+        conn = pymssql.connect(
+            server=$DB_SERVER,
+            port=$DB_PORT,
+            user=$DB_USER,
+            password=$DB_PASSWORD,
+            database=$DB_NAME
+        )  
+
         #Establish a cursor
         cursor = conn.cursor()
     except Exception as e:
