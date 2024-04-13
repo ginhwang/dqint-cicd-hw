@@ -11,13 +11,19 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/ginhwang/dqint-cicd-hw.git'
             }
         }
+        stage('Check package manager') {
+            steps {
+                sh 'which yum || echo yum not found'
+                sh 'which apt-get || echo apt-get not found'
+            }
+        }
         stage('build') {
             steps {
                 sh '''
                 python3 -m venv .venv
                 . .venv/bin/activate
                 python3 -m pip install -r requirements.txt
-                yum install -y unixODBC
+                /usr/bin/yum install -y unixODBC
                 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
                 '''
             }
