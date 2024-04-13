@@ -15,13 +15,13 @@ def db_conn_curs():
     #Connect to MS SQL
     try:
         conn = pymssql.connect(
-            server=os.getenv('DB_SERVER'),
+            host=os.getenv('DB_HOST'),
             port=os.getenv('DB_PORT'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
             database=os.getenv('DB_NAME')
         )  
-        
+
         #Establish a cursor
         cursor = conn.cursor()
     except Exception as e:
