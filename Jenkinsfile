@@ -23,7 +23,7 @@ pipeline {
                 python3 -m venv .venv
                 . .venv/bin/activate
                 python3 -m pip install -r requirements.txt
-                /usr/bin/yum install -y unixODBC
+                apt-get install -y unixODBC
                 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
                 '''
             }
