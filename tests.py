@@ -4,6 +4,7 @@ Connects to a SQL database using pyodbc
 import os
 # from dotenv import load_dotenv
 import pymssql
+import pyodbc
 import pytest
 
 # # Load environment variables
@@ -14,14 +15,13 @@ import pytest
 def db_conn_curs():
     #Connect to MS SQL
     try:
-        conn = pymssql.connect(
-            host=os.getenv('DB_HOST'),
-            port=os.getenv('DB_PORT'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            database=os.getenv('DB_NAME'),
-            login_timeout=3
-        )  
+        conn = pyodbc.connect(
+            'DRIVER={ODBC Driver 17 for SQL Server};'
+            'SERVER=' + os.getenv('DB_HOST') + ',' + os.getenv('DB_PORT') + ';'
+            'DATABASE=' + os.getenv('DB_NAME') + ';'
+            'UID=' + os.getenv('DB_USER') + ';'
+            'PWD=' + os.getenv('DB_PASSWORD') + ';'
+            ) 
 
         #Establish a cursor
         cursor = conn.cursor()
