@@ -19,7 +19,8 @@ def db_conn_curs():
             port=os.getenv('DB_PORT'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
-            database=os.getenv('DB_NAME')
+            database=os.getenv('DB_NAME'),
+            login_timeout=3
         )  
 
         #Establish a cursor
