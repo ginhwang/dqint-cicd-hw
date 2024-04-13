@@ -16,7 +16,7 @@ def db_conn_curs():
     #Connect to MS SQL
     try:
         conn = pyodbc.connect(
-            'DRIVER={ODBC Driver 17 for SQL Server};'
+            'DRIVER={FreeTDS};'
             'SERVER=' + os.getenv('DB_HOST') + ',' + os.getenv('DB_PORT') + ';'
             'DATABASE=' + os.getenv('DB_NAME') + ';'
             'UID=' + os.getenv('DB_USER') + ';'
