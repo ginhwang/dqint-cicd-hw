@@ -4,6 +4,7 @@ pipeline {
         DB_HOST = '192.168.100.129'
         DB_PORT='1433'
         DB_NAME='AdventureWorks2012'
+        LD_LIBRARY_PATH = '/opt/microsoft/msodbcsql17/lib64:$LD_LIBRARY_PATH'
     }
     stages {
         stage ('GIT Checkout'){
