@@ -17,6 +17,7 @@ pipeline {
                 python3 -m venv .venv
                 . .venv/bin/activate
                 python3 -m pip install -r requirements.txt
+                export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
                 '''
             }
         }
@@ -25,7 +26,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'mssql_creds', usernameVariable: 'DB_USER', passwordVariable: 'DB_PASSWORD')]) {
                 sh '''
                 . .venv/bin/activate
-                export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/
                 export DB_USER=$DB_USER
                 export DB_PASSWORD=$DB_PASSWORD
                 export DB_HOST=$DB_HOST
