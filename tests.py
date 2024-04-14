@@ -14,9 +14,12 @@ import pytest
 @pytest.fixture(scope='session')
 def db_conn_curs():
     #Connect to MS SQL
+    drivers = [item for item in pyodbc.drivers()]
+    driver = drivers[-1]
+    print("driver:{}".format(driver))
     try:
         conn = pyodbc.connect(
-            'DRIVER={ODBC Driver 17 for SQL Server};'
+            'DRIVER={driver};'
             'SERVER=' + os.getenv('DB_HOST') + ',' + os.getenv('DB_PORT') + ';'
             'DATABASE=' + os.getenv('DB_NAME') + ';'
             'UID=' + os.getenv('DB_USER') + ';'
