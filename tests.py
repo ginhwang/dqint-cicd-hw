@@ -4,7 +4,6 @@ Connects to a SQL database using pyodbc
 import os
 # from dotenv import load_dotenv
 import pymssql
-import pyodbc
 import pytest
 
 # # Load environment variables
