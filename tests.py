@@ -4,7 +4,6 @@ Connects to a SQL database using pyodbc
 import os
 # from dotenv import load_dotenv
 import pymssql
-import pyodbc
 import pytest
 
 # # Load environment variables
@@ -18,14 +17,13 @@ def db_conn_curs():
     driver = drivers[-1]
     print("driver:{}".format(driver))
     try:
-        conn = pyodbc.connect(
-            'DRIVER={driver};'
-            'SERVER=' + os.getenv('DB_HOST') + ',' + os.getenv('DB_PORT') + ';'
-            'DATABASE=' + os.getenv('DB_NAME') + ';'
-            'UID=' + os.getenv('DB_USER') + ';'
-            'PWD=' + os.getenv('DB_PASSWORD') + ';'
-            ) 
-
+        conn = pymssql.connect(
+            server=os.getenv('DB_SERVER'),
+            port=os.getenv('DB_PORT'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
+        )  
         #Establish a cursor
         cursor = conn.cursor()
     except Exception as e:
