@@ -13,9 +13,6 @@ import pytest
 @pytest.fixture(scope='session')
 def db_conn_curs():
     #Connect to MS SQL
-    drivers = [item for item in pyodbc.drivers()]
-    driver = drivers[-1]
-    print("driver:{}".format(driver))
     try:
         conn = pymssql.connect(
             host='192.168.100.129:1433', #os.getenv('DB_HOST')+':'+os.getenv('DB_PORT'),
