@@ -18,6 +18,7 @@ def db_conn_curs():
     driver = drivers[-1]
     print("driver:{}".format(driver))
     try:
+<<<<<<< Updated upstream
         conn = pyodbc.connect(
             'DRIVER={driver};'
             'SERVER=' + os.getenv('DB_HOST') + ',' + os.getenv('DB_PORT') + ';'
@@ -26,6 +27,14 @@ def db_conn_curs():
             'PWD=' + os.getenv('DB_PASSWORD') + ';'
             ) 
 
+=======
+        conn = pymssql.connect(
+            host='192.168.100.129:1433', #os.getenv('DB_HOST')+':'+os.getenv('DB_PORT'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
+        )  
+>>>>>>> Stashed changes
         #Establish a cursor
         cursor = conn.cursor()
     except Exception as e:
