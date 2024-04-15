@@ -18,8 +18,7 @@ def db_conn_curs():
     print("driver:{}".format(driver))
     try:
         conn = pymssql.connect(
-            server=os.getenv('DB_SERVER'),
-            port=os.getenv('DB_PORT'),
+            host='192.168.100.129:1433', #os.getenv('DB_HOST')+':'+os.getenv('DB_PORT'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
             database=os.getenv('DB_NAME')

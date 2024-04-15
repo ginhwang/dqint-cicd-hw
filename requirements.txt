@@ -1,5 +1,4 @@
 pymssql
-pyodbc
 pytest
 pytest-html
 python-dotenv

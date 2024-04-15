@@ -1,21 +1,14 @@
 pipeline {
     agent any
     environment {
-        DB_HOST = '192.168.100.129'
+        DB_HOST = '192.168.100.129:1433'
         DB_PORT='1433'
         DB_NAME='AdventureWorks2012'
-        LD_LIBRARY_PATH = '/opt/microsoft/msodbcsql17/lib64:$LD_LIBRARY_PATH'
     }
     stages {
         stage ('GIT Checkout'){
             steps {
                 git branch: 'main', url: 'https://github.com/ginhwang/dqint-cicd-hw.git'
-            }
-        }
-        stage('Check package manager') {
-            steps {
-                sh 'which yum || echo yum not found'
-                sh 'which apt-get || echo apt-get not found'
             }
         }
         stage('build') {
@@ -24,8 +17,6 @@ pipeline {
                 python3 -m venv .venv
                 . .venv/bin/activate
                 python3 -m pip install -r requirements.txt
-                sudo apt-get update && sudo apt-get install -y unixodbc
-                export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
                 '''
             }
         }
