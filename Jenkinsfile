@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DB_HOST = '192.168.100.129'
+        DB_HOST = '192.168.100.122'
         DB_PORT='1433'
         DB_NAME='AdventureWorks2012'
     }
