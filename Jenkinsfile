@@ -53,11 +53,11 @@ pipeline {
         }
         stage ('Deploy'){
             steps {
-                withCredentials([usernamePassword(credentialsId: 'b3642856-78fc-4031-b2a5-318ecfa6effb', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'gituser', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASSWORD')]) {
                     sh '''
                     . .venv/bin/activate
                     git checkout -b cd_release
-                    git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/dqint-cicd-hw.git cd_release
+                    git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/ginhwang/dqint-cicd-hw.git cd_release
                     '''
                 }
             }
