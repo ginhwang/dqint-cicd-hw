@@ -15,7 +15,7 @@ def db_conn_curs():
     #Connect to MS SQL
     try:
         conn = pymssql.connect(
-            server=os.getenv('DB_HOST'), #os.getenv('DB_HOST')+':'+os.getenv('DB_PORT'),
+            server=host.docker.internal,
             port=os.getenv('DB_PORT'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
