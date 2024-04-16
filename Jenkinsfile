@@ -46,7 +46,7 @@ pipeline {
                 git config --global user.name "ginhwang"
                 git add .
                 git commit -m "Update from Jenkins CI"
-                git push https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/dqint-cicd-hw.git
+                git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/ginhwang/dqint-cicd-hw.git
                 '''
                 }
             }
